@@ -54,11 +54,11 @@ public class App
     	list1.add(employeeOne);
     	list1.add(employeeTwo);
     	ArrayList<Employee> list2 = new ArrayList<Employee>();
-    	list1.add(employeeTwo);
-    	list1.add(employeeThree);
+    	list2.add(employeeTwo);
+    	list2.add(employeeThree);
     	ArrayList<Employee> list3 = new ArrayList<Employee>();
-    	list1.add(employeeOne);
-    	list1.add(employeeThree);
+    	list3.add(employeeOne);
+    	list3.add(employeeThree);
 
     	Company companyOne = new Company();
     	companyOne.setCompanyName("Google");
@@ -84,7 +84,8 @@ public class App
 
     	// Query - parameterized HQL and native SQL
     	System.out.println("Regular Query");
-    	List<Company> list = session.createQuery("from Company where id > :companyId").setInteger("companyId", 1).list();
+    	List<Company> list = session.createQuery("from Company where id > :companyId")
+    			.setInteger("companyId", 1).list();
     	Iterator<Company> itr = list.iterator();
     	Iterator<Employee> itr2;
     	

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.mycompany.app.models.Company" table="company">
+		<id name="id">
+			<generator class="identity"></generator>
+		</id>
+		
+		<property name="companyName"></property>
+		<property name="type"></property>
+		<list name="employees" cascade="all">
+			<key column="company_id"></key>
+			<index column="type"></index>
+			<one-to-many class="com.mycompany.app.models.Employee" />
+		</list>
+	</class>
+</hibernate-mapping>

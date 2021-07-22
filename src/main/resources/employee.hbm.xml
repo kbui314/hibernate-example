@@ -6,10 +6,16 @@
 <hibernate-mapping>
 	<class name="com.mycompany.app.models.Employee" table="employee">
 		<id name="id">
+			<column name="emp_id" />
 			<generator class="increment"></generator>
 		</id>
 		
 		<property name="firstName"></property>
 		<property name="lastName"></property>
+		
+		<set name="seminars" table="employee_seminar" inverse="true" fetch="select" lazy="true">
+			<key column="emp_id" />
+			<many-to-many class="com.mycompany.app.models.Seminar" column="sem_id" />
+		</set>
 	</class>
 </hibernate-mapping>

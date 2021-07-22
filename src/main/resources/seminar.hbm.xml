@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.mycompany.app.models.Seminar" table="seminar">
+		<id name="id">
+			<column name="sem_id"/>
+			<generator class="increment"></generator>
+		</id>
+		
+		<property name="title"></property>
+		<property name="description"></property>
+		<set name="employees" table="employee_seminar" inverse="false" fetch="select" cascade="all">
+			<key column="sem_id" />
+			<many-to-many class="com.mycompany.app.models.Employee" column="emp_id" />
+		</set>
+	</class>
+</hibernate-mapping>

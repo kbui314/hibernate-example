@@ -16,5 +16,6 @@
 
 		<mapping resource="employee.hbm.xml" />
 		<mapping resource="company.hbm.xml" />
+		<mapping resource="seminar.hbm.xml" />
 	</session-factory>
 </hibernate-configuration>

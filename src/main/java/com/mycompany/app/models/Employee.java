@@ -1,9 +1,14 @@
 package com.mycompany.app.models;
 
+import java.util.Set;
+
 public class Employee {
 
 	private int id;
+
 	private String firstName, lastName;
+	
+	private Set<Seminar> seminars;
 
 	public Employee() {
 		super();
@@ -35,9 +40,18 @@ public class Employee {
 		this.lastName = lastName;
 	}
 
+	public Set<Seminar> getSeminars() {
+		return seminars;
+	}
+
+	public void setSeminars(Set<Seminar> seminars) {
+		this.seminars = seminars;
+	}
+
 	@Override
 	public String toString() {
-		return "Employee [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + "]";
+		return "Employee [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", seminars=" + seminars
+				+ "]";
 	}
 	
 }

@@ -1,8 +1,10 @@
 package com.mycompany.app;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -14,6 +16,7 @@ import org.hibernate.criterion.Restrictions;
 
 import com.mycompany.app.models.Company;
 import com.mycompany.app.models.Employee;
+import com.mycompany.app.models.Seminar;
 
 /**
  * Hello world!
@@ -74,11 +77,28 @@ public class App
     	companyThree.setCompanyName("Best Buy");
     	companyThree.setType("Electronics");
     	companyThree.setEmployees(list3);
+    	
+    	Set<Employee> semSet = new HashSet<Employee>();
+    	semSet.add(employeeThree);
+    	semSet.add(employeeTwo);
+
+    	Seminar seminarOne = new Seminar();
+    	seminarOne.setTitle("Git");
+    	seminarOne.setDescription("Version Control");
+    	seminarOne.setEmployees(semSet);
+
+    	Seminar seminarTwo = new Seminar();
+    	seminarTwo.setTitle("AWS");
+    	seminarTwo.setDescription("SAAS");
+    	seminarTwo.setEmployees(semSet);
+    	
+    	session.persist(seminarOne);
+    	session.persist(seminarTwo);
 
     	session.persist(companyOne);
     	session.persist(companyTwo);
     	session.persist(companyThree);
-
+    	
     	transaction.commit();
     	System.out.println("Successfully saved.");
 
@@ -117,6 +137,13 @@ public class App
     	System.out.println("Saved to Java Object");
     	Company comp = (Company) session.get(Company.class, 3);
     	System.out.println(comp);
+    	
+    	// Seminar Many To Many relationship
+    	List<Seminar> seminarList = session.createQuery("from Seminar").list();
+    	Iterator<Seminar> itrSeminar = seminarList.iterator();
+    	while(itrSeminar.hasNext()) {
+    		System.out.println(itrSeminar.next());
+    	}
 
     	session.close();
     	sessionFactory.close();
